@@ -1,0 +1,9 @@
+{
+  "permissions": {
+    "allow": [
+      "mcp__claude_ai_Atlassian__atlassianUserInfo",
+      "mcp__claude_ai_Atlassian__getConfluencePage"
+    ]
+  },
+  "hldAuthor": "Your Name Here"
+}

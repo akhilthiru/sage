@@ -1,0 +1,10 @@
+{
+  "permissions": {
+    "allow": [
+      "mcp__4833e4be-792a-40f2-8dc1-c26327650dd1__getAccessibleAtlassianResources",
+      "mcp__4833e4be-792a-40f2-8dc1-c26327650dd1__getConfluencePage",
+      "mcp__4833e4be-792a-40f2-8dc1-c26327650dd1__searchConfluenceUsingCql",
+      "mcp__4833e4be-792a-40f2-8dc1-c26327650dd1__getPagesInConfluenceSpace"
+    ]
+  }
+}

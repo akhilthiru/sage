@@ -1,0 +1,78 @@
+{
+  "permissions": {
+    "allow": [
+      "Agent(*)",
+      "Read(**)",
+      "Write(outputs/**)",
+      "Write(context/**)",
+      "Write(rules/**)",
+      "Write(README.md)",
+      "Write(.claude/memory/**)",
+      "Write(.claude/settings.local.json)",
+      "Bash(scripts/notify.sh *)",
+      "Bash(bash scripts/notify.sh *)",
+      "Bash(bash *scripts/notify.sh*)",
+      "Bash(bash \"d:\\\\Projects\\\\harley davidson\\\\Source Code\\\\Source\\\\tps-dms-developer-tools\\\\Agents\\\\Architect Agent\\\\scripts\\\\notify.sh\" \"HLD Architect\" \"All 8 Sections Complete\" \"Awaiting your approval to start architectural review.\")"
+    ]
+  },
+  "hooks": {
+    "PostToolUse": [
+      {
+        "matcher": "Agent(*)",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash scripts/notify.sh \"HLD Architect\" \"Stage Complete\" \"Sub-agent finished — orchestrator continuing to next step.\""
+          }
+        ]
+      },
+      {
+        "matcher": "Write(context/**)",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash scripts/notify.sh \"HLD Architect\" \"Context Updated\" \"context/ file saved — run /sync-rules if standards have changed.\""
+          }
+        ]
+      },
+      {
+        "matcher": "Write(outputs/*.md)",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash scripts/notify.sh \"HLD Architect\" \"Section Written\" \"HLD section saved — review and continue.\""
+          }
+        ]
+      },
+      {
+        "matcher": "Write(outputs/**/*.md)",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash scripts/notify.sh \"HLD Architect\" \"Section Written\" \"HLD section saved — review and continue.\""
+          }
+        ]
+      },
+      {
+        "matcher": "Write(rules/**)",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash scripts/notify.sh \"HLD Architect\" \"Rules Updated\" \"rules/ file saved — verify standards alignment in active HLD sessions.\""
+          }
+        ]
+      }
+    ],
+    "PreToolUse": [],
+    "Stop": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash scripts/notify.sh \"HLD Architect\" \"Session Complete\" \"Claude has finished responding — review outputs/ for generated sections.\""
+          }
+        ]
+      }
+    ]
+  }
+}

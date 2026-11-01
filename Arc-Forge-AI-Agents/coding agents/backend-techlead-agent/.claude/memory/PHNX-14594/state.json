@@ -1,0 +1,16 @@
+{
+  "epic_id": "PHNX-14594",
+  "epic_title": "Service - Parts Handling - Manage Parts - Inventory",
+  "started_at": "2026-05-15T00:00:00Z",
+  "current_step": 7,
+  "review_rounds_completed": 1,
+  "hld": { "page_id": "2388361255", "url": "https://harleydavidson.atlassian.net/wiki/spaces/TPSPhoenix/pages/2388361255/Service+-+Manage+Stock+Items+HLD", "title": "Service - Manage Stock Items HLD" },
+  "frd": { "page_id": "2388590618", "url": "https://harleydavidson.atlassian.net/wiki/x/GgBfjg", "title": "FRD: Service – Repair Order Stock Item Management" },
+  "confirmed_services": [
+    "tps-dms-repair-order",
+    "tps-dms-parts-merchandise-inventory"
+  ],
+  "steps_completed": [1, 2, 3, 4, 5, 6],
+  "lld_approved": false,
+  "published_url": null
+}

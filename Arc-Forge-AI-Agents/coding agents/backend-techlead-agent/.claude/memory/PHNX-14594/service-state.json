@@ -1,0 +1,149 @@
+{
+  "generated_at": "2026-05-12T00:00:00Z",
+  "services": [
+    {
+      "name": "tps-dms-repair-order",
+      "repo_path": "Harley-Davidson-Inc/tps-dms-repair-order",
+      "specs": {
+        "openapi": {
+          "found": true,
+          "version": "3.0.3",
+          "api_version": "1.0.0",
+          "response_wrapper": "{ data, message, isSuccess }",
+          "existing_tags": ["Repair Orders", "Jobs", "Labor"],
+          "existing_paths": [
+            "GET /repair-orders",
+            "POST /repair-orders",
+            "GET /repair-orders/{repairOrderId}",
+            "PUT /repair-orders/{repairOrderId}",
+            "PATCH /repair-orders/customer",
+            "POST /repair-orders/{repairOrderId}/major-units",
+            "PUT /repair-orders/{repairOrderId}/major-units",
+            "POST /repair-orders/{repairOrderId}/alternate-contacts",
+            "PUT /repair-orders/{repairOrderId}/alternate-contacts",
+            "POST /repair-orders/export",
+            "GET /repair-orders/{repairOrderId}/jobs",
+            "POST /repair-orders/{repairOrderId}/jobs",
+            "GET /repair-orders/{repairOrderId}/jobs/next-id",
+            "GET /repair-orders/{repairOrderId}/jobs/{repairOrderJobId}",
+            "PUT /repair-orders/{repairOrderId}/jobs/{repairOrderJobId}",
+            "DELETE /repair-orders/{repairOrderId}/jobs/{repairOrderJobId}",
+            "PATCH /repair-orders/{repairOrderId}/jobs/{repairOrderJobId}/status",
+            "POST /repair-orders/{repairOrderId}/jobs/{repairOrderJobId}/export",
+            "GET /repair-orders/{repairOrderId}/jobs/{repairOrderJobId}/labors",
+            "POST /repair-orders/{repairOrderId}/jobs/{repairOrderJobId}/labors",
+            "PUT /repair-orders/{repairOrderId}/jobs/{repairOrderJobId}/labors",
+            "DELETE /repair-orders/{repairOrderId}/jobs/{repairOrderJobId}/labors",
+            "GET /repair-orders/{repairOrderId}/jobs/{repairOrderJobId}/labors/labor-summary",
+            "PUT /repair-orders/{repairOrderId}/jobs/{repairOrderJobId}/labors/labor-summary"
+          ],
+          "stock_item_paths": [],
+          "note": "No stock item endpoints exist. All 14 new endpoints are net-new additions."
+        },
+        "asyncapi": {
+          "found": true,
+          "version": "3.0.0",
+          "messaging": "MassTransit (RabbitMQ dev / Azure Service Bus prod)",
+          "role": "consumer-only",
+          "consumed_channels": [
+            "customerUpdated",
+            "customerDefaultAddressUpdated",
+            "userUpdated",
+            "majorUnitUpdated",
+            "majorUnitLocationUpdated",
+            "vendorUpdated",
+            "productLineUpdated"
+          ],
+          "published_channels": [],
+          "note": "New RepairSpecialOrderCreated publisher channel required for PHNX-7206 and PHNX-23322."
+        },
+        "db_schema": {
+          "found": false,
+          "note": "db-schema.md returned 404. LLD designs RepairOrderItem table from scratch per HLD data model and Phoenix standards."
+        }
+      }
+    },
+    {
+      "name": "tps-dms-parts-merchandise-inventory",
+      "repo_path": "Harley-Davidson-Inc/tps-dms-parts-merchandise-inventory",
+      "specs": {
+        "openapi": {
+          "found": true,
+          "version": "3.1.0",
+          "api_version": "1.0.0",
+          "response_wrapper": "{ data, success, message }",
+          "existing_tags": ["InventoryItem", "BinLocation", "PriceBook Setup", "PurchaseOrder", "PurchaseRequest", "CycleCount", "MarkdownPlan", "ReservedItems", "StockAdjustment", "Admin", "PackingList", "InventoryMetrics"],
+          "existing_inventory_item_paths": [
+            "PUT /inventory-item/commit",
+            "PUT /inventory-item/on-hand-quantities",
+            "GET /inventory-item/lookup",
+            "POST /inventory-item/complete-otc-sale",
+            "POST /inventory-item/publish-inventory-update"
+          ],
+          "key_schemas": {
+            "GetInventoryItemLookupDto": {
+              "fields": ["id", "itemNumber", "description", "onHandQty", "committedQty"]
+            },
+            "CommitInventoryItemRequest": {
+              "fields": ["priceBookItemId", "quantityDelta"]
+            },
+            "InventoryUpdateResponseDto": {
+              "fields": ["data", "success", "message"]
+            }
+          },
+          "note": "Existing PUT /inventory-item/commit is a generic delta-based endpoint. New granular endpoints needed: commit-direct, uncommit, deliver, rollback for RO integration per HLD design."
+        },
+        "asyncapi": {
+          "found": true,
+          "version": "2.6.0",
+          "messaging": "Azure Service Bus via MassTransit Outbox pattern",
+          "role": "publisher",
+          "published_channels": ["ItemInventoryUpdatedEvent"],
+          "note": "No new async channels needed in this service for this epic."
+        },
+        "db_schema": {
+          "found": false,
+          "note": "db-schema.md returned 404. InventoryItem and PriceBookRelatedItem tables assumed existing; LLD describes field references only."
+        }
+      }
+    }
+  ],
+  "gaps": [
+    {
+      "id": "GAP-001",
+      "severity": "WARN",
+      "detected_by": "spec-reader-agent",
+      "subject": "tps-dms-repair-order",
+      "type": "spec_file_missing",
+      "description": "db-schema.md not found in tps-dms-repair-order repository.",
+      "impact": "RepairOrderItem table designed from scratch using HLD data model and Phoenix standards.",
+      "recommendation": "Add db-schema.md to the repository after LLD is approved.",
+      "resolved": false,
+      "resolution": null
+    },
+    {
+      "id": "GAP-002",
+      "severity": "WARN",
+      "detected_by": "spec-reader-agent",
+      "subject": "tps-dms-parts-merchandise-inventory",
+      "type": "spec_file_missing",
+      "description": "db-schema.md not found in tps-dms-parts-merchandise-inventory repository.",
+      "impact": "InventoryItem and PriceBookRelatedItem field references assumed from existing openapi.yaml schemas.",
+      "recommendation": "Add db-schema.md to the repository.",
+      "resolved": false,
+      "resolution": null
+    },
+    {
+      "id": "GAP-003",
+      "severity": "WARN",
+      "detected_by": "confluence-reader-agent",
+      "subject": "PHNX-7211 and 17 other stories",
+      "type": "figma_unreadable",
+      "description": "Figma MCP rate limit exhausted after reading 1 screenshot. 17 of 18 stories have no Figma frame data.",
+      "impact": "API schema field names and UI interactions inferred from acceptance criteria text only. Screen layout unknown.",
+      "recommendation": "Re-run /lld-resume after Figma quota resets to enrich field derivations.",
+      "resolved": true,
+      "resolution": "User explicitly authorized proceeding without Figma: 'proceed without figma'."
+    }
+  ]
+}

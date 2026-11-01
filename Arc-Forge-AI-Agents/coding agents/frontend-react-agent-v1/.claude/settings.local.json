@@ -1,0 +1,16 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(npx tsc:*)",
+      "Bash(npm run:*)",
+      "Bash(npx:*)",
+      "Bash(powershell:*)",
+      "Bash(curl:*)",
+      "mcp__claude_ai_Atlassian__getAccessibleAtlassianResources",
+      "mcp__claude_ai_Atlassian__getJiraIssue",
+      "WebFetch(domain:localhost)",
+      "Bash(mkdir -p /c/Users/aseem.muhammad/Projects/react-agent-seed/.claude/agents)",
+      "Bash(cp /c/Users/aseem.muhammad/Projects/react-agent-seed/agents/* /c/Users/aseem.muhammad/Projects/react-agent-seed/.claude/agents/)"
+    ]
+  }
+}

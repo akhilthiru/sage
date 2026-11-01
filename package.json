@@ -1,0 +1,25 @@
+{
+  "name": "sage-monorepo",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Sage - AI-Powered Personal CFO Monorepo",
+  "workspaces": [
+    "packages/*",
+    "apps/*"
+  ],
+  "scripts": {
+    "build": "npm run --workspaces --if-present build",
+    "test": "npm run --workspaces --if-present test",
+    "test:coverage": "npm run --workspaces --if-present test:coverage",
+    "type-check": "npm run --workspaces --if-present type-check",
+    "clean": "npm run --workspaces --if-present clean"
+  },
+  "keywords": [
+    "personal-cfo",
+    "financial-engine",
+    "monorepo",
+    "antigravity"
+  ],
+  "author": "Sage",
+  "license": "MIT"
+}

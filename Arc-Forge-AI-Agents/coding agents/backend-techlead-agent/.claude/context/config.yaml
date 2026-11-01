@@ -1,0 +1,50 @@
+# Technical Lead Agent — Configuration
+
+repos_root_dir: "d:\\Projects\\Harley-Auto"
+
+jira:
+  base_url: "https://harleydavidson.atlassian.net"
+  project_key: "PHNX"
+  doc_link_source: "remote_links"
+
+confluence:
+  base_url: "https://harleydavidson.atlassian.net/wiki"
+  space_key: "PHNX"
+
+spec_files:
+  openapi:   "specifications/openapi.yaml"
+  asyncapi:  "specifications/asyncapi.yaml"
+  db_schema: "specifications/db-design.md"
+
+git:
+  main_branch: "main"
+  fallback_branch: "master"
+  auto_stash: true
+
+dotnet:
+  target_framework: "net8.0"
+  db: "sqlserver"
+  migration_tool: "efcore"
+  messaging: null
+
+output:
+  base_dir: "output"
+
+pipeline:
+  require_human_approval_before_publish: true
+  max_lld_revisions: 5
+
+figma:
+  on_read_failure: "warn"
+
+estimation:
+  unit: "hours"
+  review_rounds:
+    - name: "Senior Dev Review"
+      hours: 2
+    - name: "Tech Lead Review"
+      hours: 2
+  rework_buffer:
+    threshold_hours: 16
+    hours: 2
+  split_threshold: 40
