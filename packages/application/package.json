@@ -1,0 +1,49 @@
+{
+  "name": "@sage/application",
+  "version": "1.0.0",
+  "description": "Application Layer orchestration, use cases, and DTOs for Sage AI Personal CFO",
+  "main": "./dist/index.js",
+  "module": "./dist/index.mjs",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.mjs",
+      "require": "./dist/index.js"
+    }
+  },
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "tsup",
+    "dev": "tsup --watch",
+    "test": "vitest run --passWithNoTests",
+    "test:watch": "vitest",
+    "test:coverage": "vitest run --coverage --passWithNoTests",
+    "type-check": "tsc --noEmit",
+    "clean": "rm -rf dist"
+  },
+  "keywords": [
+    "sage",
+    "application",
+    "orchestration",
+    "services",
+    "use-cases",
+    "dtos"
+  ],
+  "author": "Sage",
+  "license": "MIT",
+  "dependencies": {
+    "@sage/database": "*",
+    "@sage/financial-engine": "*",
+    "zod": "^3.22.4"
+  },
+  "devDependencies": {
+    "@types/node": "^20.10.0",
+    "@vitest/coverage-v8": "^1.0.4",
+    "tsup": "^8.0.1",
+    "typescript": "^5.3.3",
+    "vitest": "^1.0.4"
+  }
+}
