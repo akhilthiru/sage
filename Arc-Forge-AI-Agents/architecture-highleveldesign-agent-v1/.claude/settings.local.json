@@ -1,9 +1,0 @@
-{
-  "permissions": {
-    "allow": [
-      "mcp__claude_ai_Atlassian__getConfluenceSpaces",
-      "mcp__claude_ai_Atlassian__updateConfluencePage",
-      "mcp__claude_ai_Atlassian__createConfluencePage"
-    ]
-  }
-}

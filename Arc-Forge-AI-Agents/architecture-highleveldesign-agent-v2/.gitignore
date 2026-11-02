@@ -1,9 +1,0 @@
-# User-specific Claude Code config — copy from .claude/settings.local.json.template and fill in your values
-.claude/settings.local.json
-
-# Generated HLD outputs — not source-controlled
-outputs/
-
-# OS artifacts
-.DS_Store
-Thumbs.db
