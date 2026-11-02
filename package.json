@@ -12,7 +12,12 @@
     "test": "npm run --workspaces --if-present test",
     "test:coverage": "npm run --workspaces --if-present test:coverage",
     "type-check": "npm run --workspaces --if-present type-check",
-    "clean": "npm run --workspaces --if-present clean"
+    "clean": "npm run --workspaces --if-present clean",
+    "db:generate": "npm --workspace=@sage/database run db:generate",
+    "db:push": "npm --workspace=@sage/database run db:push",
+    "db:migrate": "npm --workspace=@sage/database run db:migrate",
+    "db:seed": "npm --workspace=@sage/database run db:seed",
+    "db:studio": "npm --workspace=@sage/database run db:studio"
   },
   "keywords": [
     "personal-cfo",

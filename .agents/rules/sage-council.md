@@ -43,3 +43,16 @@ Task Request -> [Sage-Planner] -> [HUMAN GATE 1: Spec Approval] -> [Sage-Dev]
   -> [Parallel Review: Sage-Reviewer + Sage-Architect]
   -> [Sage-Tester: Test Run] -> [HUMAN GATE 2: Verification]
 ```
+
+## Agent Invocation Protocol (Zero Prompt Overhead)
+To invoke any agent without repeating requirements or typing long prompts, prefix the prompt with the agent name or shorthand:
+
+| Command / Prefix | Active Agent | Action Taken Automatically |
+| :--- | :--- | :--- |
+| `Sage-Dev: ...` or `Dev: ...` | **Sage-Dev** | Implements the requested phase or component following architecture rules, Result types, and zero `any`. |
+| `Sage-Tester: ...` or `Test: ...` | **Sage-Tester** | Writes and runs Vitest test suites, mocks dependencies, and verifies >85% coverage. |
+| `Sage-Reviewer: ...` or `Review: ...` | **Sage-Reviewer** | Adversarially inspects recent changes for bugs, type issues, precision loss, and security. Issues GO/NO-GO verdict. |
+| `Sage-Architect: ...` or `Architect: ...` | **Sage-Architect** | Verifies layer boundaries, schema constraints, transaction models, and invariant compliance. |
+| `Sage-Planner: ...` or `Plan: ...` | **Sage-Planner** | Breaks down tasks into file-level technical specs and awaits Human Gate 1 approval. |
+| `Sage-Council: ...` or `Council: ...` | **Sage-Council** | Orchestrates the full lifecycle (Plan -> Gate 1 -> Dev -> Review -> Test -> Gate 2). |
+

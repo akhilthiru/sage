@@ -11,3 +11,11 @@ Sage is an AI-powered Personal CFO built with a modular monolith architecture.
    - Code review verifies quality, types, and security (Sage-Reviewer & Sage-Architect).
    - Comprehensive Vitest test suites must pass with >85% coverage (Sage-Tester).
 4. **Environment:** Node.js v22.17.0 (`~/.nvm/versions/node/v22.17.0/bin`) and npm 10.9.2.
+
+## Agent Invocation Shortcuts
+- `Dev:` or `Sage-Dev:` -> Direct implementation.
+- `Test:` or `Sage-Tester:` -> Test creation & coverage verification.
+- `Review:` or `Sage-Reviewer:` -> Adversarial code & security review.
+- `Architect:` or `Sage-Architect:` -> Architecture & boundary validation.
+- `Plan:` or `Sage-Planner:` -> Spec planning (Human Gate 1).
+- `Council:` or `Sage-Council:` -> Full council lifecycle orchestration.
